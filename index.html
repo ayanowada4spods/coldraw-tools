@@ -31,7 +31,6 @@
             padding-bottom: 10px;
             margin-top: 0;
         }
-        /* 基本情報入力エリア */
         .meta-info-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -157,7 +156,6 @@
         }
         .btn-print:hover { background: #1d4ed8; }
 
-        /* PDF・印刷設定 */
         @media print {
             body { background: white; margin: 0; }
             .container { box-shadow: none; padding: 0; width: 100%; max-width: 100%; }
@@ -189,7 +187,6 @@
 <div class="container">
     <h1>COLDRAW パートナーフロント業務条件・見積シミュレーター</h1>
     
-    <!-- 基本情報入力フォーム -->
     <div class="meta-info-grid">
         <div class="meta-item">
             <label for="requestDate">申請日:</label>
@@ -201,17 +198,17 @@
         </div>
         <div class="meta-item">
             <label for="sessionName">セッション名:</label>
-            <input type="text" id="sessionName" placeholder="例：クリエイターセッション@&mog2F">
+            <input type="text" id="sessionName" placeholder="例：第1回 クリエイター体験セッション">
         </div>
         <div class="meta-item">
             <label for="mainOwner">主担当名:</label>
-            <input type="text" id="mainOwner" placeholder="例：大月 信彦">
+            <input type="text" id="mainOwner" placeholder="例：大月 / 和田">
         </div>
     </div>
 
     <div class="config-bar no-print">
         <div class="config-item">
-            <label for="targetUnits">目標設置台数（クリエイター数）:</label>
+            <label for="targetUnits">目標設置台数(クリエイター数):</label>
             <input type="number" id="targetUnits" value="1" min="1" onchange="calculate()"> 台
         </div>
         <div style="font-size: 12px; color: #1e40af;">
@@ -227,7 +224,7 @@
                 <th style="width: 100px;">Role</th>
                 <th>業務内容 / 成果定義</th>
                 <th style="width: 90px;" class="text-center">区分</th>
-                <th style="width: 120px;" class="text-right">単価(万円/台)</th>
+                <th style="width: 130px;" class="text-right">単価(万円/台)</th>
                 <th style="width: 110px;" class="text-right">小計(万円)</th>
             </tr>
         </thead>
@@ -254,16 +251,17 @@
 
 <script>
 const itemsData = [
-    { phase: "Phase 1 : 獲得・意思確認", role: "Partner Front", content: "申込意思の確定/セッション開催責任・条件調整・LOI取得", type: "Mandatory", price: 4, isRange: false },
-    { phase: "Phase 1 : 獲得・意思確認", role: "Session Support", content: "セッション開催に伴う抽出用素材手配・デモ抽出（1イベントあたり）", type: "Optional", price: 1, isRange: false },
-    { phase: "Phase 1 : 獲得・意思確認", role: "MAVO Drink", content: "Mavo抽出依頼発送・物流連携", type: "Optional", price: 1, isRange: false },
-    { phase: "Phase 1 : 獲得・意思確認", role: "Creator", content: "新規クリエイター向けプレゼン・当日デモ協力", type: "Optional", price: 3, isRange: true, min: 1, max: 10 },
-    { phase: "Phase 1 : 獲得・意思確認", role: "Placement Fee", content: "店舗/外部レンタルスペース等の会場提供費", type: "Optional", price: 5, isRange: true, min: 1, max: 10 },
+    { phase: "Phase 1 : 獲得・意思確認", role: "Partner Front", content: "セッション主催・条件調整・LOI取得/契約意思確認 / LOIまたは意思確認(Hubspot入力)・毎月成果報告書提出", type: "Mandatory", price: 4, isRange: false },
+    { phase: "Phase 1 : 獲得・意思確認", role: "Session Support", content: "セッション開催に伴う抽出用素材手配・抽出作業・デモ抽出 / 1イベントあたり抽出に付随する作業の実行", type: "Optional", price: 1.5, isSelectOptions: true, options: [1.5, 3] },
+    { phase: "Phase 1 : 獲得・意思確認", role: "Session Support", content: "事前抽出・デモ抽出（荻原さん・宮里さんがCR社移籍までの期間・&mogまたは神田オフィスのみ）", type: "Optional", price: 0, isRange: false, note: "N/A" },
+    { phase: "Phase 1 : 獲得・意思確認", role: "MAVO Drink", content: "Mavo抽出依頼発送 / Mavoさんにて抽出液の発送", type: "Optional", price: 1, isRange: false },
+    { phase: "Phase 1 : 獲得・意思確認", role: "Creator", content: "新規クリエイター向けプレゼン・当日デモ協力 / 当日セッションにて抽出デモ", type: "Optional", price: 1, isRange: true, min: 1, max: 10 },
+    { phase: "Phase 1 : 獲得・意思確認", role: "Placement Fee", content: "店舗/外部レンタルスペース等の会場提供費 / 会場提供", type: "Optional", price: 1, isRange: true, min: 1, max: 10 },
     { phase: "Phase 1 : レシピ開発・ハッカソン", role: "Partner Success", content: "Key Person向けイベント企画・進行開催管理", type: "Optional", price: 2, isRange: false },
-    { phase: "Phase 2 : 契約・導入設置", role: "Front Support", content: "営業事務・契約書締結（クラウドサイン等）・機器手配", type: "Mandatory", price: 0, isRange: false, note: "N/A" },
-    { phase: "Phase 2 : 契約・導入設置", role: "Partner Front", content: "初期疎通・レクチャー・機器設置完了確認", type: "Mandatory", price: 3, isRange: false },
-    { phase: "Phase 3 : 稼働追跡・改善", role: "Front Support", content: "抽出回数の定期トラック・データ集計（Notion）", type: "Mandatory", price: 0, isRange: false, note: "N/A" },
-    { phase: "Phase 3 : 稼働追跡・改善(3か月)", role: "Partner Front", content: "異常値探知時のボトルネック特定・月次レポート・改善提案", type: "Mandatory", price: 3, isRange: false },
+    { phase: "Phase 2 : 契約・導入設置", role: "Front Support", content: "営業事務・契約書締結（クラウドサイン等）への依頼・機器手配・現場設置", type: "Mandatory", price: 0, isRange: false, note: "N/A" },
+    { phase: "Phase 2 : 契約・導入設置", role: "Partner Front", content: "初期疎通・レクチャー / 機器設置完了・初回疎通確認・導入設置サイン取得・毎月成果報告書提出", type: "Mandatory", price: 3, isRange: false },
+    { phase: "Phase 3 : 稼働追跡・改善", role: "Front Support", content: "抽出回数の定期トラック（Notion集計レポート）", type: "Mandatory", price: 0, isRange: false, note: "N/A" },
+    { phase: "Phase 3 : 稼働追跡・改善(3か月)", role: "Partner Front", content: "異常値探知・ボトルネック特定・改善アクション策定・月次レポート・レシピ共有 / 設置後3ヶ月データ運用・毎月成果報告書提出", type: "Mandatory", price: 3, isRange: false },
     { phase: "Phase 4 : レシピ開発・ハッカソン", role: "Partner Success", content: "CR理解向上イベント企画・進行（R&D費用扱い）", type: "Optional", price: 2, isRange: false }
 ];
 
@@ -285,6 +283,12 @@ function renderTable() {
         let priceInputHtml = '';
         if (item.note === 'N/A') {
             priceInputHtml = `<span style="color:#94a3b8;">N/A (0)</span>`;
+        } else if (item.isSelectOptions) {
+            let optionsHtml = '';
+            item.options.forEach(val => {
+                optionsHtml += `<option value="${val}" ${val === item.price ? 'selected' : ''}>${val} 万円</option>`;
+            });
+            priceInputHtml = `<select id="price-${index}" onchange="calculate()">${optionsHtml}</select>`;
         } else if (item.isRange) {
             let optionsHtml = '';
             for (let val = item.min; val <= item.max; val++) {
@@ -325,7 +329,7 @@ function toggleRow(index) {
 }
 
 function calculate() {
-    const units = parseInt(document.getElementById('targetUnits').value) || 1;
+    const units = parseFloat(document.getElementById('targetUnits').value) || 1;
     let singleUnitTotal = 0;
 
     itemsData.forEach((item, index) => {
@@ -337,18 +341,18 @@ function calculate() {
             const unitPrice = item.note === 'N/A' ? 0 : (parseFloat(priceInput.value) || 0);
             const rowSubtotal = unitPrice * units;
             singleUnitTotal += unitPrice;
-            subtotalSpan.innerText = rowSubtotal.toLocaleString();
+            subtotalSpan.innerText = rowSubtotal.toLocaleString(undefined, {maximumFractionDigits: 2});
         } else {
             subtotalSpan.innerText = '0';
         }
     });
 
     const grandTotal = singleUnitTotal * units;
-    const grandTotalTax = Math.round(grandTotal * 1.1 * 10) / 10;
+    const grandTotalTax = Math.round(grandTotal * 1.1 * 100) / 100;
 
-    document.getElementById('perUnitPrice').innerText = singleUnitTotal.toLocaleString();
-    document.getElementById('grandTotal').innerText = grandTotal.toLocaleString() + ' 万円';
-    document.getElementById('grandTotalTax').innerText = grandTotalTax.toLocaleString() + ' 万円';
+    document.getElementById('perUnitPrice').innerText = singleUnitTotal.toLocaleString(undefined, {maximumFractionDigits: 2});
+    document.getElementById('grandTotal').innerText = grandTotal.toLocaleString(undefined, {maximumFractionDigits: 2}) + ' 万円';
+    document.getElementById('grandTotalTax').innerText = grandTotalTax.toLocaleString(undefined, {maximumFractionDigits: 2}) + ' 万円';
 }
 
 window.onload = function() {
