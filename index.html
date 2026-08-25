@@ -31,6 +31,198 @@
             padding-bottom: 10px;
             margin-top: 0;
         }
+        /* 基本情報入力エリア */
+        .meta-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px 20px;
+            background: var(--bg-gray);
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .meta-item label {
+            font-weight: bold;
+            font-size: 13px;
+            color: #475569;
+            width: 90px;
+            flex-shrink: 0;
+        }
+        .meta-item input[type="text"], .meta-item input[type="date"] {
+            flex-grow: 1;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #fff;
+        }
+
+        .config-bar {
+            display: flex;
+            gap: 20px;
+            background: #eff6ff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            align-items: center;
+            border: 1px solid #bfdbfe;
+        }
+        .config-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
+        input[type="number"], select {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #fff;
+        }
+        input[type="number"] {
+            width: 80px;
+            text-align: right;
+        }
+        select {
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid var(--border);
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: var(--bg-gray);
+            color: #475569;
+            font-weight: 600;
+        }
+        .badge-mandatory {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        .badge-optional {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
+        .row-inactive { opacity: 0.5; background-color: #fafafa; }
+        
+        .summary-card {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .summary-total {
+            font-size: 28px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+        .btn-print {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .btn-print:hover { background: #1d4ed8; }
+
+        /* PDF・印刷設定 */
+        @media print {
+            body { background: white; margin: 0; }
+            .container { box-shadow: none; padding: 0; width: 100%; max-width: 100%; }
+            .no-print, .checkbox-cell { display: none; }
+            .row-inactive { display: none; }
+            .meta-info-grid {
+                background: transparent;
+                border: 1px solid #cbd5e1;
+                grid-template-columns: repeat(2, 1fr);
+                padding: 10px 15px;
+            }
+            input[type="number"], select, input[type="text"], input[type="date"] {
+                border: none;
+                background: transparent;
+                appearance: none;
+                -webkit-appearance: none;
+                padding: 0;
+                font-weight: bold;
+                font-size: 13px;
+                color: #000;
+            }
+            .summary-card { background: #f8fafc; color: black; border: 2px solid #000; }
+            .summary-total { color: #000; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>COLDRAW パートナーフロント業務条件・見積シミュレーター</h1>
+    
+    <!-- 基本情報入力フォーム -->
+   <!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COLDRAW クリエイター獲得・導入見積シミュレーター</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg-gray: #f8fafc;
+            --border: #e2e8f0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 20px;
+            background-color: #f1f5f9;
+            color: #334155;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 22px;
+            color: #0f172a;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
         .meta-info-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -198,10 +390,10 @@
         </div>
         <div class="meta-item">
             <label for="sessionName">セッション名:</label>
-            <input type="text" id="sessionName" placeholder="例：クリエイターセッション_&mog">
+            <input type="text" id="sessionName" placeholder="例：クリエイターセッション &mog2F">
         </div>
         <div class="meta-item">
-            <label for="mainOwner">主担当名:</label>
+            <label for="mainOwner">主担当PF:</label>
             <input type="text" id="mainOwner" placeholder="例：大月 信彦">
         </div>
     </div>
@@ -224,7 +416,7 @@
                 <th style="width: 100px;">Role</th>
                 <th>業務内容 / 成果定義</th>
                 <th style="width: 90px;" class="text-center">区分</th>
-                <th style="width: 130px;" class="text-right">単価(万円/台)</th>
+                <th style="width: 130px;" class="text-right">単価(万円)</th>
                 <th style="width: 110px;" class="text-right">小計(万円)</th>
             </tr>
         </thead>
@@ -252,11 +444,11 @@
 <script>
 const itemsData = [
     { phase: "Phase 1 : 獲得・意思確認", role: "Partner Front", content: "セッション主催・条件調整・LOI取得/契約意思確認 / LOIまたは意思確認(Hubspot入力)・毎月成果報告書提出", type: "Mandatory", price: 4, isRange: false },
-    { phase: "Phase 1 : 獲得・意思確認", role: "Session Support", content: "セッション開催に伴う抽出用素材手配・抽出作業・デモ抽出 / 1イベントあたり抽出に付随する作業の実行", type: "Optional",  price: 1, isRange: true, min: 1, max: 5 },
+    { phase: "Phase 1 : 獲得・意思確認", role: "Session Support", content: "セッション開催に伴う抽出用素材手配・抽出作業・デモ抽出 / 1イベントあたり抽出に付随する作業の実行（※1イベント固定費）", type: "Optional", price: 1.5, isRange: true, min: 0.5, max: 5, step: 0.5, isFixed: true },
     { phase: "Phase 1 : 獲得・意思確認", role: "Session Support", content: "事前抽出・デモ抽出（荻原さん・宮里さんがCR社移籍までの期間・&mogまたは神田オフィスのみ）", type: "Optional", price: 0, isRange: false, note: "N/A" },
     { phase: "Phase 1 : 獲得・意思確認", role: "MAVO Drink", content: "Mavo抽出依頼発送 / Mavoさんにて抽出液の発送", type: "Optional", price: 1, isRange: false },
-    { phase: "Phase 1 : 獲得・意思確認", role: "Creator", content: "新規クリエイター向けプレゼン・当日デモ協力 / 当日セッションにて抽出デモ", type: "Optional", price: 1, isRange: true, min: 1, max: 10 },
-    { phase: "Phase 1 : 獲得・意思確認", role: "Placement Fee", content: "店舗/外部レンタルスペース等の会場提供費 / 会場提供", type: "Optional", price: 1, isRange: true, min: 1, max: 10 },
+    { phase: "Phase 1 : 獲得・意思確認", role: "Creator", content: "新規クリエイター向けプレゼン・当日デモ協力 / 当日セッションにて抽出デモ", type: "Optional", price: 1, isRange: true, min: 1, max: 10, step: 1 },
+    { phase: "Phase 1 : 獲得・意思確認", role: "Placement Fee", content: "店舗/外部レンタルスペース等の会場提供費 / 会場提供", type: "Optional", price: 1, isRange: true, min: 1, max: 10, step: 1 },
     { phase: "Phase 1 : レシピ開発・ハッカソン", role: "Partner Success", content: "Key Person向けイベント企画・進行開催管理", type: "Optional", price: 2, isRange: false },
     { phase: "Phase 2 : 契約・導入設置", role: "Front Support", content: "営業事務・契約書締結（クラウドサイン等）への依頼・機器手配・現場設置", type: "Mandatory", price: 0, isRange: false, note: "N/A" },
     { phase: "Phase 2 : 契約・導入設置", role: "Partner Front", content: "初期疎通・レクチャー / 機器設置完了・初回疎通確認・導入設置サイン取得・毎月成果報告書提出", type: "Mandatory", price: 3, isRange: false },
@@ -283,16 +475,12 @@ function renderTable() {
         let priceInputHtml = '';
         if (item.note === 'N/A') {
             priceInputHtml = `<span style="color:#94a3b8;">N/A (0)</span>`;
-        } else if (item.isSelectOptions) {
-            let optionsHtml = '';
-            item.options.forEach(val => {
-                optionsHtml += `<option value="${val}" ${val === item.price ? 'selected' : ''}>${val} 万円</option>`;
-            });
-            priceInputHtml = `<select id="price-${index}" onchange="calculate()">${optionsHtml}</select>`;
         } else if (item.isRange) {
             let optionsHtml = '';
-            for (let val = item.min; val <= item.max; val++) {
-                optionsHtml += `<option value="${val}" ${val === item.price ? 'selected' : ''}>${val} 万円</option>`;
+            const step = item.step || 1;
+            for (let val = item.min; val <= item.max + 0.0001; val += step) {
+                const displayVal = Math.round(val * 10) / 10;
+                optionsHtml += `<option value="${displayVal}" ${displayVal === item.price ? 'selected' : ''}>${displayVal} 万円${item.isFixed ? ' (固定)' : ''}</option>`;
             }
             priceInputHtml = `<select id="price-${index}" onchange="calculate()">${optionsHtml}</select>`;
         } else {
@@ -330,7 +518,7 @@ function toggleRow(index) {
 
 function calculate() {
     const units = parseFloat(document.getElementById('targetUnits').value) || 1;
-    let singleUnitTotal = 0;
+    let grandTotal = 0;
 
     itemsData.forEach((item, index) => {
         const checkbox = document.getElementById(`check-${index}`);
@@ -339,18 +527,21 @@ function calculate() {
 
         if (checkbox && checkbox.checked) {
             const unitPrice = item.note === 'N/A' ? 0 : (parseFloat(priceInput.value) || 0);
-            const rowSubtotal = unitPrice * units;
-            singleUnitTotal += unitPrice;
+            
+            // isFixedがtrueの項目は台数をかけずにイベント1回分として計算
+            const rowSubtotal = item.isFixed ? unitPrice : (unitPrice * units);
+            grandTotal += rowSubtotal;
+            
             subtotalSpan.innerText = rowSubtotal.toLocaleString(undefined, {maximumFractionDigits: 2});
         } else {
             subtotalSpan.innerText = '0';
         }
     });
 
-    const grandTotal = singleUnitTotal * units;
+    const perUnitPrice = units > 0 ? (grandTotal / units) : 0;
     const grandTotalTax = Math.round(grandTotal * 1.1 * 100) / 100;
 
-    document.getElementById('perUnitPrice').innerText = singleUnitTotal.toLocaleString(undefined, {maximumFractionDigits: 2});
+    document.getElementById('perUnitPrice').innerText = perUnitPrice.toLocaleString(undefined, {maximumFractionDigits: 2});
     document.getElementById('grandTotal').innerText = grandTotal.toLocaleString(undefined, {maximumFractionDigits: 2}) + ' 万円';
     document.getElementById('grandTotalTax').innerText = grandTotalTax.toLocaleString(undefined, {maximumFractionDigits: 2}) + ' 万円';
 }
