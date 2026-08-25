@@ -31,7 +31,6 @@
             padding-bottom: 10px;
             margin-top: 0;
         }
-        /* 基本情報入力エリア */
         .meta-info-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -96,203 +95,12 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 13px;
+            font-size: 12px;
             margin-bottom: 20px;
         }
         th, td {
             border: 1px solid var(--border);
-            padding: 10px;
-            text-align: left;
-            vertical-align: top;
-        }
-        th {
-            background-color: var(--bg-gray);
-            color: #475569;
-            font-weight: 600;
-        }
-        .badge-mandatory {
-            background: #fee2e2;
-            color: #991b1b;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 11px;
-        }
-        .badge-optional {
-            background: #e0f2fe;
-            color: #0369a1;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 11px;
-        }
-        .text-right { text-align: right; }
-        .text-center { text-align: center; }
-        .row-inactive { opacity: 0.5; background-color: #fafafa; }
-        
-        .summary-card {
-            background: #0f172a;
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .summary-total {
-            font-size: 28px;
-            font-weight: bold;
-            color: #38bdf8;
-        }
-        .btn-print {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-        }
-        .btn-print:hover { background: #1d4ed8; }
-
-        /* PDF・印刷設定 */
-        @media print {
-            body { background: white; margin: 0; }
-            .container { box-shadow: none; padding: 0; width: 100%; max-width: 100%; }
-            .no-print, .checkbox-cell { display: none; }
-            .row-inactive { display: none; }
-            .meta-info-grid {
-                background: transparent;
-                border: 1px solid #cbd5e1;
-                grid-template-columns: repeat(2, 1fr);
-                padding: 10px 15px;
-            }
-            input[type="number"], select, input[type="text"], input[type="date"] {
-                border: none;
-                background: transparent;
-                appearance: none;
-                -webkit-appearance: none;
-                padding: 0;
-                font-weight: bold;
-                font-size: 13px;
-                color: #000;
-            }
-            .summary-card { background: #f8fafc; color: black; border: 2px solid #000; }
-            .summary-total { color: #000; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1>COLDRAW パートナーフロント業務条件・見積シミュレーター</h1>
-    
-    <!-- 基本情報入力フォーム -->
-   <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COLDRAW クリエイター獲得・導入見積シミュレーター</title>
-    <style>
-        :root {
-            --primary: #2563eb;
-            --bg-gray: #f8fafc;
-            --border: #e2e8f0;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            margin: 20px;
-            background-color: #f1f5f9;
-            color: #334155;
-        }
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            font-size: 22px;
-            color: #0f172a;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-        .meta-info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px 20px;
-            background: var(--bg-gray);
-            padding: 16px 20px;
-            border-radius: 8px;
-            margin-bottom: 16px;
-            border: 1px solid var(--border);
-        }
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .meta-item label {
-            font-weight: bold;
-            font-size: 13px;
-            color: #475569;
-            width: 90px;
-            flex-shrink: 0;
-        }
-        .meta-item input[type="text"], .meta-item input[type="date"] {
-            flex-grow: 1;
-            padding: 6px 10px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            font-size: 14px;
-            background-color: #fff;
-        }
-
-        .config-bar {
-            display: flex;
-            gap: 20px;
-            background: #eff6ff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            align-items: center;
-            border: 1px solid #bfdbfe;
-        }
-        .config-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: bold;
-        }
-        input[type="number"], select {
-            padding: 6px 10px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            font-size: 14px;
-            background-color: #fff;
-        }
-        input[type="number"] {
-            width: 80px;
-            text-align: right;
-        }
-        select {
-            cursor: pointer;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-            margin-bottom: 20px;
-        }
-        th, td {
-            border: 1px solid var(--border);
-            padding: 10px;
+            padding: 8px 10px;
             text-align: left;
             vertical-align: top;
         }
@@ -366,7 +174,7 @@
                 -webkit-appearance: none;
                 padding: 0;
                 font-weight: bold;
-                font-size: 13px;
+                font-size: 12px;
                 color: #000;
             }
             .summary-card { background: #f8fafc; color: black; border: 2px solid #000; }
@@ -390,10 +198,10 @@
         </div>
         <div class="meta-item">
             <label for="sessionName">セッション名:</label>
-            <input type="text" id="sessionName" placeholder="例：クリエイターセッション &mog2F">
+            <input type="text" id="sessionName" placeholder="例：クリエイターセッション＠場所">
         </div>
         <div class="meta-item">
-            <label for="mainOwner">主担当PF:</label>
+            <label for="mainOwner">主担当名:</label>
             <input type="text" id="mainOwner" placeholder="例：大月 信彦">
         </div>
     </div>
@@ -413,11 +221,11 @@
             <tr>
                 <th class="no-print text-center" style="width: 40px;">選択</th>
                 <th style="width: 140px;">フェーズ</th>
-                <th style="width: 100px;">Role</th>
+                <th style="width: 110px;">Role</th>
                 <th>業務内容 / 成果定義</th>
-                <th style="width: 90px;" class="text-center">区分</th>
-                <th style="width: 130px;" class="text-right">単価(万円)</th>
-                <th style="width: 110px;" class="text-right">小計(万円)</th>
+                <th style="width: 80px;" class="text-center">区分</th>
+                <th style="width: 130px;" class="text-right">費用/インセンティブ</th>
+                <th style="width: 100px;" class="text-right">小計(万円)</th>
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -444,16 +252,17 @@
 <script>
 const itemsData = [
     { phase: "Phase 1 : 獲得・意思確認", role: "Partner Front", content: "セッション主催・条件調整・LOI取得/契約意思確認 / LOIまたは意思確認(Hubspot入力)・毎月成果報告書提出", type: "Mandatory", price: 4, isRange: false },
-    { phase: "Phase 1 : 獲得・意思確認", role: "Session Support", content: "セッション開催に伴う抽出用素材手配・抽出作業・デモ抽出 / 1イベントあたり抽出に付随する作業の実行（※1イベント固定費）", type: "Optional", price: 1.5, isRange: true, min: 0.5, max: 5, step: 0.5, isFixed: true },
+    { phase: "Phase 1 : 獲得・意思確認", role: "Session Support", content: "担当レシピ・衛生管理を満たした上での素材発注/事前抽出/デモ抽出 / 1イベントあたり抽出に付随する作業の実行（※固定費）", type: "Optional", price: 1.5, isRange: true, min: 1.5, max: 5.0, step: 0.5, isFixed: true },
     { phase: "Phase 1 : 獲得・意思確認", role: "Session Support", content: "事前抽出・デモ抽出（荻原さん・宮里さんがCR社移籍までの期間・&mogまたは神田オフィスのみ）", type: "Optional", price: 0, isRange: false, note: "N/A" },
-    { phase: "Phase 1 : 獲得・意思確認", role: "MAVO Drink", content: "Mavo抽出依頼発送 / Mavoさんにて抽出液の発送", type: "Optional", price: 1, isRange: false },
-    { phase: "Phase 1 : 獲得・意思確認", role: "Creator", content: "新規クリエイター向けプレゼン・当日デモ協力 / 当日セッションにて抽出デモ", type: "Optional", price: 1, isRange: true, min: 1, max: 10, step: 1 },
-    { phase: "Phase 1 : 獲得・意思確認", role: "Placement Fee", content: "店舗/外部レンタルスペース等の会場提供費 / 会場提供", type: "Optional", price: 1, isRange: true, min: 1, max: 10, step: 1 },
-    { phase: "Phase 1 : レシピ開発・ハッカソン", role: "Partner Success", content: "Key Person向けイベント企画・進行開催管理", type: "Optional", price: 2, isRange: false },
-    { phase: "Phase 2 : 契約・導入設置", role: "Front Support", content: "営業事務・契約書締結（クラウドサイン等）への依頼・機器手配・現場設置", type: "Mandatory", price: 0, isRange: false, note: "N/A" },
+    { phase: "Phase 1 : 獲得・意思確認", role: "MAVO Drink", content: "西村さんに依頼し抽出・クール便発送 / Mavoさんにて抽出液の発送（※固定費）", type: "Optional", price: 1, isRange: true, min: 1, max: 5, step: 1, isFixed: true },
+    { phase: "Phase 1 : 獲得・意思確認", role: "Creator", content: "新規クリエイター候補へプレゼンし獲得CVRを引き上げる / 当日セッションにて抽出デモ（※固定費）", type: "Optional", price: 1, isRange: true, min: 1, max: 10, step: 1, isFixed: true },
+    { phase: "Phase 1 : 獲得・意思確認", role: "Creator(紹介Hub)", content: "クリエイターがPFと主軸となり企画・知り合い目線でプレゼン。紹介者HUBのための紹介フィー / 当日セッションにて抽出デモ", type: "Optional", price: 5, isRange: false },
+    { phase: "Phase 1 : 獲得・意思確認", role: "Placement Fee", content: "店舗または外部レンタルスペース等で行う場合の会場費またはペアリングフード費用 / 会場提供", type: "Optional", price: 1, isRange: true, min: 1, max: 10, step: 1 },
+    { phase: "Phase 1 : レシピ開発・ハッカソン", role: "Partner Success", content: "Key Personに対するプレゼン・イベント企画進行管理（PSイベントは営業費カウント）", type: "Optional", price: 2, isRange: false },
+    { phase: "Phase 2 : 契約・導入設置", role: "Front Support", content: "営業事務(小川さん・幸谷さん) / 契約書締結(クラウドサイン等)への依頼・機器手配・現場設置", type: "Mandatory", price: 0, isRange: false, note: "N/A" },
     { phase: "Phase 2 : 契約・導入設置", role: "Partner Front", content: "初期疎通・レクチャー / 機器設置完了・初回疎通確認・導入設置サイン取得・毎月成果報告書提出", type: "Mandatory", price: 3, isRange: false },
-    { phase: "Phase 3 : 稼働追跡・改善", role: "Front Support", content: "抽出回数の定期トラック（Notion集計レポート）", type: "Mandatory", price: 0, isRange: false, note: "N/A" },
-    { phase: "Phase 3 : 稼働追跡・改善(3か月)", role: "Partner Front", content: "異常値探知・ボトルネック特定・改善アクション策定・月次レポート・レシピ共有 / 設置後3ヶ月データ運用・毎月成果報告書提出", type: "Mandatory", price: 3, isRange: false },
+    { phase: "Phase 3 : 稼働追跡・改善", role: "Front Support", content: "営業事務(小川さん・幸谷さん) / 抽出回数の定期トラック(Notion集計レポート)", type: "Mandatory", price: 0, isRange: false, note: "N/A" },
+    { phase: "Phase 3 : 稼働追跡・改善(3か月)", role: "Partner Front", content: "抽出ログからのヒアリング・異常値探知・改善アクション策定・レシピ共有 / 設置後3ヶ月データ運用・毎月成果報告書提出", type: "Mandatory", price: 3, isRange: false },
     { phase: "Phase 4 : レシピ開発・ハッカソン", role: "Partner Success", content: "CR理解向上イベント企画・進行（R&D費用扱い）", type: "Optional", price: 2, isRange: false }
 ];
 
@@ -528,7 +337,7 @@ function calculate() {
         if (checkbox && checkbox.checked) {
             const unitPrice = item.note === 'N/A' ? 0 : (parseFloat(priceInput.value) || 0);
             
-            // isFixedがtrueの項目は台数をかけずにイベント1回分として計算
+            // isFixedがtrueの項目は台数を掛けずにイベント1回分として計算
             const rowSubtotal = item.isFixed ? unitPrice : (unitPrice * units);
             grandTotal += rowSubtotal;
             
