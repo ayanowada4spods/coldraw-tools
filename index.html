@@ -160,33 +160,33 @@
         /* A4横1枚に収めるための印刷専用CSS */
         @page {
             size: A4 landscape;
-            margin: 6mm 8mm;
+            margin: 5mm 6mm;
         }
         @media print {
-            body { background: white; margin: 0; padding: 0; font-size: 10px; color: #000; }
+            body { background: white; margin: 0; padding: 0; font-size: 9.5px; color: #000; }
             .container { box-shadow: none; padding: 0; width: 100%; max-width: 100%; }
             .no-print, .checkbox-cell { display: none !important; }
             .row-inactive { display: none !important; }
-            h1 { font-size: 16px; margin-bottom: 6px; padding-bottom: 4px; border-bottom-width: 1.5px; }
+            h1 { font-size: 15px; margin-bottom: 4px; padding-bottom: 3px; border-bottom-width: 1.5px; }
             
             .meta-info-grid {
                 background: transparent;
                 border: 1px solid #cbd5e1;
                 grid-template-columns: repeat(4, 1fr);
-                padding: 6px 10px;
-                margin-bottom: 6px;
-                gap: 4px 10px;
+                padding: 4px 8px;
+                margin-bottom: 4px;
+                gap: 2px 8px;
             }
-            .meta-item label { font-size: 10px; width: auto; }
+            .meta-item label { font-size: 9.5px; width: auto; }
             
             .config-bar {
                 background: transparent;
                 border: 1px solid #cbd5e1;
-                padding: 4px 10px;
-                margin-bottom: 8px;
-                gap: 20px;
+                padding: 3px 8px;
+                margin-bottom: 5px;
+                gap: 16px;
             }
-            .config-item { font-size: 10px; }
+            .config-item { font-size: 9.5px; }
 
             input[type="number"], select, input[type="text"], input[type="date"] {
                 border: none;
@@ -195,21 +195,21 @@
                 -webkit-appearance: none;
                 padding: 0;
                 font-weight: bold;
-                font-size: 10px;
+                font-size: 9.5px;
                 color: #000;
                 width: auto;
             }
             
-            table { font-size: 9.5px; margin-bottom: 8px; }
-            th, td { padding: 3px 5px; line-height: 1.25; }
+            table { font-size: 9px; margin-bottom: 6px; }
+            th, td { padding: 2px 5px; line-height: 1.2; }
             
             .summary-card {
                 background: #f8fafc;
                 color: black;
                 border: 1.5px solid #000;
-                padding: 8px 14px;
+                padding: 6px 12px;
             }
-            .summary-total { color: #000; font-size: 20px; }
+            .summary-total { color: #000; font-size: 18px; }
         }
     </style>
 </head>
@@ -294,6 +294,7 @@ const itemsData = [
     { phase: "Phase 1 : 獲得・意思確認", role: "Creator(紹介Hub)", content: "クリエイターがPFと主軸となり企画・知り合い目線でプレゼン。紹介者HUBのための紹介フィー / 当日セッションにて抽出デモ", type: "Optional", price: 5, isRange: false },
     { phase: "Phase 1 : 獲得・意思確認", role: "Foods", content: "セッション開催を店舗または外部レンタルスペース等で行う場合のペアリングフード費用 / フード提供（※招待客数に連動）", type: "Optional", price: 1, isRange: true, min: 1, max: 10, step: 1, isGuestMultiplied: true },
     { phase: "Phase 1 : 獲得・意思確認", role: "Placement Fee", content: "セッション開催を店舗または外部レンタルスペース等で行う場合の会場費 / 会場提供（※固定費）", type: "Optional", price: 1, isRange: true, min: 1, max: 30, step: 1, isFixed: true },
+    { phase: "Phase 1 : 獲得・意思確認", role: "Travel Expense", content: "承認時に概算見積をsPods遠方旅費交通費規定に照らし合わせて組込む / Partner Frontおよびセッションキャストの旅費交通費（※固定費）", type: "Optional", price: 1, isRange: true, min: 1, max: 30, step: 1, isFixed: true },
     { phase: "Phase 1 : レシピ開発・ハッカソン", role: "Partner Success", content: "Key Personに対するプレゼン・イベント企画進行管理（PSイベントは営業費カウント）", type: "Optional", price: 2, isRange: false },
     { phase: "Phase 2 : 契約・導入設置", role: "Front Support", content: "営業事務(小川さん・幸谷さん) / 契約書締結(クラウドサイン等)への依頼・機器手配・現場設置", type: "Mandatory", price: 0, isRange: false, note: "N/A" },
     { phase: "Phase 2 : 契約・導入設置", role: "Partner Front", content: "初期疎通・レクチャー / 機器設置完了・初回疎通確認・導入設置サイン取得・毎月成果報告書提出", type: "Mandatory", price: 3, isRange: false },
@@ -377,13 +378,10 @@ function calculate() {
             
             let rowSubtotal = 0;
             if (item.isFixed) {
-                // 固定費（台数・人数によらない）
                 rowSubtotal = unitPrice;
             } else if (item.isGuestMultiplied) {
-                // Foods項目：招待客数を乗算
                 rowSubtotal = unitPrice * guests;
             } else {
-                // 通常項目：成約目標台数を乗算
                 rowSubtotal = unitPrice * units;
             }
 
